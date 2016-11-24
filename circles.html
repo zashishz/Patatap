@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Circles</title>
+    <script src="paper-full.js" type="text/javascript"></script>
+    <script type="text/paperscript" canvas="myCanvas">
+	<!--// Create a Paper.js Path to draw a line into it:-->
+	<!--var path = new Path();-->
+	<!--// Give the stroke a color-->
+	<!--path.strokeColor = 'black';-->
+	<!--var start = new Point(100, 100);-->
+	<!--// Move to start and draw a line from there-->
+	<!--path.moveTo(start);-->
+	<!--// Note the plus operator on Point objects.-->
+	<!--// PaperScript does that for us, and much more!-->
+	<!--path.lineTo(start + [ 100, -50 ]);-->
+	<!--for(var i = 0; i<1001; i+=100) {-->
+	    <!--for(var j=0; j<1001; j+=100) {-->
+	        <!--var myCircle = new Path.Circle(new Point(i, j), 10);-->
+            <!--myCircle.fillColor = 'purple';-->
+	    <!--}-->
+	<!--}-->
+	var circlesArr = [];
+	function onKeyDown(event){
+	    var maxPoint = new Point(view.size.width,view.size.height);
+	    var randPoint = Point.random();
+	    var point = maxPoint * randPoint;
+	    var myCircle = new Path.Circle(point, 500);
+        myCircle.fillColor = 'green';
+        circlesArr.push(myCircle);
+	}
+	//console.log(circlesArr);
+	function onFrame(event) {
+	    for(var i=0; i< circlesArr.length; i++) {
+            circlesArr[i].fillColor.hue += 1;
+            circlesArr[i].scale(.9);
+        }
+	}
+
+    </script>
+    <link href="circles.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
